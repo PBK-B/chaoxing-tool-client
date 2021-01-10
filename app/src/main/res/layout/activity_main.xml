@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center">
+        <Button
+            android:id="@+id/main_start_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始答题" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/main_vip_text"
+            android:visibility="gone"
+            android:textStyle="bold"
+            android:layout_marginBottom="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FFC107"
+            android:text="305 寝室专属版，拥有安院专属题库（禁止外传）"/>
+
+        <TextView
+            android:id="@+id/main_jrqq_text"
+            android:textIsSelectable="true"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="该项目为免费开源，禁止用于商业用途！包括但不限于出售软件，使用软件代考等一切商业用途！\n问题反馈建议QQ群（也可以加入一起唠嗑哦）：811831860"/>
+    </LinearLayout>
+
+</LinearLayout>

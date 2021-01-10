@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:elevation="5dp"
+    android:translationZ="2dp"
+    android:background="#FFF"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:ellipsize="end"
+                android:lines="1"
+                android:id="@+id/xfc_toast_tt"
+                android:text="这是题目！"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textIsSelectable="true"
+                android:id="@+id/xfc_toast_dn"
+                android:text="这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！"
+                android:layout_marginTop="5dp"
+                android:textColor="#F56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

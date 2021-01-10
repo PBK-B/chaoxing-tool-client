@@ -1,0 +1,3 @@
+include ':app' ,':floatwindow'
+
+rootProject.name = "ChaoxingXNM"
