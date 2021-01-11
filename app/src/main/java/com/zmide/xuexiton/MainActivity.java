@@ -1,5 +1,7 @@
 package com.zmide.xuexiton;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -57,6 +59,14 @@ public class MainActivity extends AppCompatActivity {
     Context mContext;
     boolean isVip = false;
 
+
+    private Button paste;
+    private Button search;
+    private Button clear;
+    private EditText question;
+    private TextView answer01;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +74,70 @@ public class MainActivity extends AppCompatActivity {
         mContext = this;
 
 
+        //主页面控件绑定
+        paste = (Button) findViewById(R.id.paste);
+        clear = (Button) findViewById(R.id.clear);
+        question = (EditText) findViewById(R.id.question);
+        search = (Button) findViewById(R.id.search);
+        answer01 = (TextView) findViewById(R.id.answer);
+
+        paste.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 获取剪贴板数据
+                String content = null;
+                ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                try {
+                    ClipData data = cm.getPrimaryClip();
+                    ClipData.Item item = data.getItemAt(0);
+                    content = item.getText().toString();
+                    question.setText(content);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                question.setText("");
+                toast("已清空.....");
+            }
+        });
+
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (question.getText().toString().isEmpty()) {
+                            answer01.setText("请输入题目后搜索");
+                            toast("请输入题目后搜索");
+                        } else {
+                            answer01.setText("正在搜索中.....");
+                            toast("正在搜索中.....");
+                            searchServer searchServer = new searchServer();
+                            String answer = null;
+                            try {
+                                answer = searchServer.searchDao(question.getText().toString());
+                                answer = answer.replace("李恒雅", "查题君");
+                                answer = answer.replace("并发限制,请使用token(公众号:叛逆青年旅舍 申请)", "");
+                                answer01.setText(answer);
+                                toast(answer);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }).start();
+            }
+        });
+
+
+
+//        悬浮窗开始
         if (Build.VERSION.SDK_INT >= 23) {
             if (Settings.canDrawOverlays(MainActivity.this)) {
 
@@ -109,11 +183,29 @@ public class MainActivity extends AppCompatActivity {
         mJrqqText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String group = "811831860";
+                /*String group = "964722860";
                 String url = "mqqwpa://im/chat?chat_type=group&uin=" + group;
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getBaseContext().startActivity(intent);
+                getBaseContext().startActivity(intent);*/
+                /****************
+                 *
+                 * 发起添加群流程。群号：查题君(964722860) 的 key 为： TI8c6LLADvf811TMU3SfD3Pcf50lpvLP
+                 * 调用 joinQQGroup(TI8c6LLADvf811TMU3SfD3Pcf50lpvLP) 即可发起手Q客户端申请加群 查题君(964722860)
+                 *
+                 * @param key 由官网生成的key
+                 * @return 返回true表示呼起手Q成功，返回false表示呼起失败
+                 ******************/
+                    Intent intent = new Intent();
+                    intent.setData(Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D" + "TI8c6LLADvf811TMU3SfD3Pcf50lpvLP"));
+                    // 此Flag可根据具体产品需要自定义，如设置，则在加群界面按返回，返回手Q主界面，不设置，按返回会返回到呼起产品界面    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    try {
+                        toast("正在加入QQ群...");
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        toast("加入QQ群失败，请检查是否安装QQ客户端.");
+                    }
+
             }
         });
 
@@ -269,7 +361,8 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         // 处理接口返回脏数据
-                        dn = dn.replace("李恒雅", "好傻好天真");
+                        dn = dn.replace("李恒雅", "查题君");
+                        dn = dn.replace("并发限制,请使用token(公众号:叛逆青年旅舍 申请)", "");
 
                         toast(dn);
                         setDN(dn);

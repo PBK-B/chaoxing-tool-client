@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">学你🐎</string>
+    <string name="main_start_btn">打开悬浮窗</string>
+    <string name="paste">粘贴</string>
+    <string name="search">搜索</string>
+    <string name="clear">清空</string>
+    <string name="question">请输入题目</string>
+    <string name="answer">这是答案！！这是答案！！这是答案！！这是答案！！这是答案！！这是答案！！这是答案！！</string>
+    <string name="bottom">该项目为免费开源，禁止用于商业用途！包括但不限于出售软件，使用软件代考等一切商业用途！\n问题反馈建议QQ群（也可以加入一起唠嗑哦）：964722860(点击加群)</string>
+    <string-array name="plantes">
+        <item>题库1</item>
+        <item>题库2</item>
+        <item>题库3</item>
+        <item>题库4</item>
+        <item>更多题库正在添加中..</item>
+    </string-array>
 </resources>
