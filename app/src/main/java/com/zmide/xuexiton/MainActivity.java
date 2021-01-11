@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText question;
     private TextView answer01;
 
+    searchDao searchDao = new searchDao();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -118,10 +119,9 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             answer01.setText("正在搜索中.....");
                             toast("正在搜索中.....");
-                            searchServer searchServer = new searchServer();
                             String answer = null;
                             try {
-                                answer = searchServer.searchDao(question.getText().toString());
+                                answer = searchDao.apiSeekTT1(question.getText().toString());
                                 answer = answer.replace("李恒雅", "查题君");
                                 answer = answer.replace("并发限制,请使用token(公众号:叛逆青年旅舍 申请)", "");
                                 answer01.setText(answer);
@@ -183,18 +183,8 @@ public class MainActivity extends AppCompatActivity {
         mJrqqText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*String group = "964722860";
-                String url = "mqqwpa://im/chat?chat_type=group&uin=" + group;
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                getBaseContext().startActivity(intent);*/
                 /****************
-                 *
-                 * 发起添加群流程。群号：查题君(964722860) 的 key 为： TI8c6LLADvf811TMU3SfD3Pcf50lpvLP
-                 * 调用 joinQQGroup(TI8c6LLADvf811TMU3SfD3Pcf50lpvLP) 即可发起手Q客户端申请加群 查题君(964722860)
-                 *
-                 * @param key 由官网生成的key
-                 * @return 返回true表示呼起手Q成功，返回false表示呼起失败
+                 * 发起添加群流程
                  ******************/
                     Intent intent = new Intent();
                     intent.setData(Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D" + "TI8c6LLADvf811TMU3SfD3Pcf50lpvLP"));
@@ -309,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                         // 判断不是中文的话就翻译
                         if (!isChinese(tt.replaceAll(regEx, ""))) {
                             try {
-                                String fy = apiFY(tt);
+                                String fy = searchDao.apiFY(tt);
                                 dn = dn + fy + hh;
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -321,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
                         if (isVip) {
                             // 专属题库
                             try {
-                                String da0 = apiSeekTT0(tt);
+                                String da0 = searchDao.apiSeekTT0(tt);
                                 dn = dn + da0 + hh;
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -332,7 +322,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // 题库一
                         try {
-                            String da1 = apiSeekTT1(tt);
+                            String da1 =searchDao.apiSeekTT1(tt);
                             dn = dn + da1 + hh;
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -342,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // 题库二
                         try {
-                            String da2 = apiSeekTT2(tt);
+                            String da2 = searchDao.apiSeekTT2(tt);
                             dn = dn + da2 + hh;
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -352,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
 
                         // 题库三
                         try {
-                            String da3 = apiSeekTT3(tt);
+                            String da3 = searchDao.apiSeekTT3(tt);
                             dn = dn + da3 + hh;
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -423,7 +413,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    String apiSeekTT0(String tt) throws IOException, JSONException {
+    /*String apiSeekTT0(String tt) throws IOException, JSONException {
         Request request = new Request.Builder()
                 .url("http://tool.chaoxing.zmorg.cn/api/search.php?q=" + tt)
                 .method("GET", null)
@@ -494,7 +484,7 @@ public class MainActivity extends AppCompatActivity {
         JSONObject jsonObject = new JSONObject(data).getJSONObject("msg");
         String resStr = "【翻译】" + jsonObject.getString("TargetText");
         return resStr;
-    }
+    }*/
 
     /**
      * 判断该字符串是否为中文
