@@ -20,6 +20,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private Button clear;
     private EditText question;
     private TextView answer01;
+    private Spinner spinner;
 
     searchDao searchDao = new searchDao();
 
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         question = (EditText) findViewById(R.id.question);
         search = (Button) findViewById(R.id.search);
         answer01 = (TextView) findViewById(R.id.answer);
+        spinner = (Spinner) findViewById(R.id.spinner);
 
         paste.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,12 +110,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        String tiku = (String) spinner.getSelectedItem();
                         if (question.getText().toString().isEmpty()) {
                             answer01.setText("请输入题目后搜索");
                             toast("请输入题目后搜索");
@@ -121,7 +127,21 @@ public class MainActivity extends AppCompatActivity {
                             toast("正在搜索中.....");
                             String answer = null;
                             try {
-                                answer = searchDao.apiSeekTT1(question.getText().toString());
+                                switch(tiku){
+                                    case "题库1":
+                                        answer = searchDao.apiSeekTT1(question.getText().toString());
+                                        break;
+                                    case "题库2":
+                                        answer = searchDao.apiSeekTT2(question.getText().toString());
+                                        break;
+                                    case "题库3":
+                                        answer = searchDao.apiSeekTT3(question.getText().toString());
+                                        break;
+                                    case "翻译":
+                                        answer = searchDao.apiFY(question.getText().toString());
+                                        break;
+
+                                }
                                 answer = answer.replace("李恒雅", "查题君");
                                 answer = answer.replace("并发限制,请使用token(公众号:叛逆青年旅舍 申请)", "");
                                 answer01.setText(answer);
