@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 //        悬浮窗开始
-        if (Build.VERSION.SDK_INT >= 23) {
+  /*      if (Build.VERSION.SDK_INT >= 23) {
             if (Settings.canDrawOverlays(MainActivity.this)) {
 
                 Toast.makeText(MainActivity.this, "已开启悬浮窗权限！", Toast.LENGTH_SHORT).show();
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
 
         }
-
+*/
         initView();
         getAnnouncement();
         showAnnouncement();
@@ -187,6 +187,7 @@ public class MainActivity extends AppCompatActivity {
             mVipText.setVisibility(View.VISIBLE);
         }
 
+        //绑定打开悬浮窗按钮
         mStartBtn = findViewById(R.id.main_start_btn);
         mStartBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,17 +255,14 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         FloatWindow.get().show();
 
-
     }
 
     private void onFloat() {
-
         // 显示球状态
         if (!isBall) {
             showBall();
             return;
         }
-
         isBall = false;
         View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.layout_xfc, null);
         EditText edt = view.findViewById(R.id.xfc_seek_edt);
@@ -433,78 +431,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*String apiSeekTT0(String tt) throws IOException, JSONException {
-        Request request = new Request.Builder()
-                .url("http://tool.chaoxing.zmorg.cn/api/search.php?q=" + tt)
-                .method("GET", null)
-                .build();
-        Response response = client.newCall(request).execute();
-        String data = response.body().string();
-        JSONObject jsonObject = new JSONObject(data).getJSONObject("msg");
-        String resStr = "【专属题库】 " + jsonObject.getString("answer");
-        return resStr;
-    }
-
-    String apiSeekTT1(String tt) throws IOException, JSONException {
-        MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("question", tt)
-                .build();
-        Request request = new Request.Builder()
-                .url("http://cx.icodef.com/wyn-nb?v=2")
-                .method("POST", body)
-                .addHeader("Content-type", "application/x-www-form-urlencoded")
-                .build();
-        Response response = client.newCall(request).execute();
-        String data = response.body().string();
-        JSONObject jsonObject = new JSONObject(data);
-        String resStr = "【题库1】 " + jsonObject.getString("data");
-        return resStr;
-    }
-
-    String apiSeekTT2(String tt) throws IOException, JSONException {
-        MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-        RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                .addFormDataPart("question", tt)
-                .build();
-        Request request = new Request.Builder()
-                .url("http://exam.tk/search")
-                .method("POST", body)
-                .addHeader("Content-type", "application/x-www-form-urlencoded")
-                .build();
-        Response response = client.newCall(request).execute();
-        String data = response.body().string();
-        JSONObject jsonObject = new JSONObject(data);
-        String resStr = "【题库2】 " + jsonObject.getString("data");
-        return resStr;
-
-    }
-
-    String apiSeekTT3(String tt) throws IOException, JSONException {
-        MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-        Request request = new Request.Builder()
-                .url("http://imnu.52king.cn/api/wk/index.php?c=" + tt)
-                .method("GET", null)
-                .build();
-        Response response = client.newCall(request).execute();
-        String data = response.body().string();
-        JSONObject jsonObject = new JSONObject(data);
-        String resStr = "【题库3】" + jsonObject.getString("answer");
-        return resStr;
-    }
-
-
-    String apiFY(String text) throws IOException, JSONException {
-        Request request = new Request.Builder()
-                .url("http://tool.chaoxing.zmorg.cn/api/tx_fy.php?q=" + text)
-                .method("GET", null)
-                .build();
-        Response response = client.newCall(request).execute();
-        String data = response.body().string();
-        JSONObject jsonObject = new JSONObject(data).getJSONObject("msg");
-        String resStr = "【翻译】" + jsonObject.getString("TargetText");
-        return resStr;
-    }*/
 
     /**
      * 判断该字符串是否为中文
