@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     String TAG = "PBK-B";
     Context mContext;
     boolean isVip = false;
+    String version = "v1.3";
 
 
     private Button paste;
@@ -109,8 +110,6 @@ public class MainActivity extends AppCompatActivity {
                 toast("已清空.....");
             }
         });
-
-
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,6 +176,109 @@ public class MainActivity extends AppCompatActivity {
         initView();
         getAnnouncement();
         showAnnouncement();
+        updata();
+    }
+
+    //检查更新
+    private void updata() {
+        String Url = "http://hnvist1.zmorg.cn/data/hnvist_xnm_announcement.json";
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(Url)
+                            .build();
+                    okHttpClient.newCall(request).enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                        }
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                String data = response.body().string();
+                                if (response.code() == 200) {
+                                    try {
+                                        JSONObject json = new JSONObject(data);
+                                        String msg = json.getString("msg");
+                                        String newversion = json.getString("version");
+                                        String downUrl = json.getString("down");
+                                        SharedPreferences pref = getSharedPreferences("data", MODE_PRIVATE);
+                                        String announcement = pref.getString("announcement", "");
+
+                                        if (!version.equals(newversion)){
+                                            toast(newversion);
+                                            toast("检查到更新");
+                                            runOnUiThread(new Runnable() {
+                                                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+                                                @Override
+                                                public void run() {
+                                                    // 创建dialog构造器
+                                                    AlertDialog.Builder normalDialog = new AlertDialog.Builder(mContext);
+                                                    // 设置title
+                                                    normalDialog.setTitle("发现更新");
+                                                    // 设置内容
+                                                    normalDialog.setMessage(msg);
+                                                    //禁止用户返回
+                                                    normalDialog.setCancelable(false);
+                                                    // 设置按钮
+                                                    normalDialog.setPositiveButton("去更新"
+                                                            , new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    try {
+                                                                        Uri uri = Uri.parse(downUrl);
+                                                                        Intent intent = new Intent();
+                                                                        intent.setAction("android.intent.action.VIEW");
+                                                                        intent.setData(uri);
+                                                                        startActivity(intent);
+                                                                        toast("正在前往更新....");
+                                                                        System.exit(0);
+                                                                    } catch (Exception e) {
+                                                                        toast("调用浏览器更新失败。");
+                                                                        System.exit(0);
+                                                                    }
+                                                                }
+                                                            });
+                                                    normalDialog.setNegativeButton("加入QQ群"
+                                                            , new DialogInterface.OnClickListener() {
+                                                                @Override
+                                                                public void onClick(DialogInterface dialog, int which) {
+                                                                    Intent intent = new Intent();
+                                                                    intent.setData(Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26jump_from%3Dwebapi%26k%3D" + "TI8c6LLADvf811TMU3SfD3Pcf50lpvLP"));
+                                                                    // 此Flag可根据具体产品需要自定义，如设置，则在加群界面按返回，返回手Q主界面，不设置，按返回会返回到呼起产品界面    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                                                    try {
+                                                                        toast("正在加入QQ群...");
+                                                                        startActivity(intent);
+                                                                        System.exit(0);
+                                                                    } catch (Exception e) {
+                                                                        toast("加入QQ群失败，请检查是否安装QQ客户端.");
+                                                                        System.exit(0);
+                                                                    }
+                                                                }
+                                                            });
+                                                    // 创建并显示
+                                                    AlertDialog dialog = normalDialog.create();
+                                                    dialog.setCanceledOnTouchOutside(false);
+                                                    dialog.show();
+                                                }
+                                            });
+                                        }else {
+                                            toast("已是最新版");
+                                        }
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
+                        }
+                    });
+                } catch (Error error) {
+                }
+            }
+        }).start();
     }
 
 
