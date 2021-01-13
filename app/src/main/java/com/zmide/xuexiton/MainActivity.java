@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     String TAG = "PBK-B";
     Context mContext;
     boolean isVip = false;
-    String version = "v1.3";
+    String version = "v1.4";
 
 
     private Button paste;

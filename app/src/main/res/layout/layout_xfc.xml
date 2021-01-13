@@ -19,24 +19,28 @@
             android:id="@+id/xfc_seek_edt"
             android:layout_marginRight="15dp"
             android:paddingHorizontal="10dp"
-            android:background="#CFCFCF"
+            android:background="@drawable/et_sharp"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="35dp"/>
 
         <Button
+            style="@style/buttons_float"
             android:id="@+id/xfc_seek_btn"
+            android:padding="0dp"
             android:layout_width="35dp"
-            android:gravity="center"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:textColor="@color/white"
             android:text="搜"/>
 
         <Button
+            style="@style/buttons_float"
             android:id="@+id/xfc_off_btn"
+            android:padding="0dp"
             android:layout_width="35dp"
-            android:gravity="center"
             android:layout_marginLeft="5dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
+            android:textColor="@color/white"
             android:text="关"/>
 
     </LinearLayout>
@@ -47,6 +51,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:background="@drawable/text_sharp"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
