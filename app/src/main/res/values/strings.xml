@@ -1,12 +1,31 @@
 <resources>
-    <string name="app_name">学你🐎</string>
+    <string name="app_name">学了吗</string>
+    <string name="version">Version&#160;1.5</string>
+
+<!--    <string name="aboutBottom">逐梦工作室&#160;&#160;&#160;&#160;版权所有 \n Copyright&#160;&#160;©&#160;&#160;2020-2021 &#160;&#160;zmide</string>-->
+
+
+    <!--主页-->
+    <string name="card1">查题</string>
+    <string name="card2">课程表</string>
+    <string name="card3">错题本(正在开发中....)</string>
+    <string name="card4">待添加</string>
+    <string name="card5">待添加</string>
+    <string name="card6">待添加</string>
+    <string name="card7">待添加</string>
+    <string name="card8">待添加</string>
+    <string name="card9">待添加</string>
+    <string name="card10">待添加</string>
+
+
+    <!--查题-->
     <string name="main_start_btn">打开\\关闭悬浮窗</string>
     <string name="paste">粘贴</string>
     <string name="search">搜索</string>
     <string name="clear">清空</string>
     <string name="question">请输入题目</string>
     <string name="answer">这是答案！！这是答案！！这是答案！！这是答案！！这是答案！！这是答案！！这是答案！！</string>
-    <string name="bottom">该项目为免费开源，禁止用于商业用途！包括但不限于出售软件，使用软件代考等一切商业用途！\n问题反馈建议QQ群（也可以加入一起唠嗑哦）：964722860(点击加群)</string>
+    <string name="bottom">本项目禁止用于商业用途！包括但不限于出售软件，使用软件代考等一切商业用途！</string>
     <string-array name="plantes">
         <item>题库1</item>
         <item>题库2</item>
@@ -14,4 +33,11 @@
         <item>翻译</item>
         <item>更多题库正在添加中..</item>
     </string-array>
+
+    <!--课程表-->
+    <string name="lastWeek">上一周</string>
+    <string name="nextWeek">下一周</string>
+    <string name="back">返回</string>
+    <string name="delCourse">删除课程</string>
+
 </resources>

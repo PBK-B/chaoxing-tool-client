@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zmide.xuexiton">
+    package="com.zmide">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -18,7 +18,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".SearchActivity"
+        <activity
+            android:name="com.zmide.MainActivity"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AboutActivity"/>
+
+
+        <!--搜题-->
+        <activity android:name="com.zmide.search.MainActivity"/>
+        <activity android:name="com.zmide.search.SearchActivity"
             android:label="搜题"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
@@ -28,16 +41,15 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".SeekService"/>
+        <service android:name="com.zmide.search.SeekService"/>
 
-        <activity
-            android:name="MainActivity"
-            android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
+        <!--课程表-->
+        <activity android:name="com.zmide.myClass.activity.UpdateCourseActivity"></activity>
+        <activity android:name="com.zmide.myClass.activity.OptionActivity" />
+        <activity android:name="com.zmide.myClass.activity.MainActivity" />
+
+
     </application>
 
 </manifest>

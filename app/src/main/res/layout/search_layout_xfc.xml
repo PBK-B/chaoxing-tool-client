@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:elevation="5dp"
+    android:translationZ="2dp"
+    android:background="#FFF"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:lines="1"
+            android:id="@+id/xfc_seek_edt"
+            android:layout_marginRight="15dp"
+            android:paddingHorizontal="10dp"
+            android:background="@drawable/search_et_sharp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="35dp"/>
+
+        <Button
+            style="@style/buttons_float"
+            android:id="@+id/xfc_seek_btn"
+            android:padding="0dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:textColor="@color/white"
+            android:text="搜"/>
+
+        <Button
+            style="@style/buttons_float"
+            android:id="@+id/xfc_off_btn"
+            android:padding="0dp"
+            android:layout_width="35dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="35dp"
+            android:textColor="@color/white"
+            android:text="关"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:background="@drawable/search_text_sharp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:ellipsize="end"
+                android:lines="1"
+                android:id="@+id/xfc_seek_tt"
+                android:text="这是题目！"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textIsSelectable="true"
+                android:id="@+id/xfc_seek_dn"
+                android:text="这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！这是答案！"
+                android:layout_marginTop="5dp"
+                android:textColor="#F56"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

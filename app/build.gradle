@@ -7,11 +7,11 @@ android {
     buildToolsVersion '30.0.3'
 
     defaultConfig {
-        applicationId "com.zmide.xuexiton"
+        applicationId 'com.zmide.study'
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 2
-        versionName '1.4'
+        versionName '1.5'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -49,5 +49,16 @@ dependencies {
 
     implementation 'com.qmuiteam:qmui:2.0.0-alpha10'
     //引入腾讯qmui
+
+    implementation "androidx.cardview:cardview:1.0.0"
+    //卡片视图
+    implementation 'androidx.percentlayout:percentlayout:1.0.0'
+    //百分比布局
+
+
+    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.61'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //课程表
 
 }

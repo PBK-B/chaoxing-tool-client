@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--课程信息-->
+    <LinearLayout
+        android:padding="18dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--课程-->
+        <LinearLayout
+            android:layout_marginBottom="23dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginRight="18dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/myclass_book"/>
+            <EditText
+                android:id="@+id/etCourseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:hint="课程名"
+                android:background="@null"/>
+        </LinearLayout>
+        <!--授课老师-->
+        <LinearLayout
+            android:layout_marginBottom="23dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginRight="18dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/myclass_user"/>
+            <EditText
+                android:id="@+id/etTeacherName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:hint="授课教师"
+                android:background="@null"/>
+        </LinearLayout>
+
+        <!--周次-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--起始周次-->
+            <ImageView
+                android:layout_marginRight="18dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/myclass_start"/>
+            <EditText
+                android:id="@+id/etStartWeek"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:hint="起始周次"
+                android:background="@null"/>
+
+            <ImageView
+                android:layout_marginRight="18dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/myclass_end"/>
+            <EditText
+                android:id="@+id/etEndWeek"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:hint="终止周次"
+                android:background="@null"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
