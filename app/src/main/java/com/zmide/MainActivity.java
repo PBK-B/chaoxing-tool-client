@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String TAG = "zmide";
     Context mContext;
     boolean isVip = false;
-    String version = "v1.5";
+    String version = "v1.6";
 
 
     private CardView card1;
@@ -69,29 +69,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         card1 = (CardView) findViewById(R.id.card1);
         card2 = (CardView) findViewById(R.id.card2);
-        card3 = (CardView) findViewById(R.id.card3);
-        card4 = (CardView) findViewById(R.id.card4);
-        card5 = (CardView) findViewById(R.id.card5);
-        card6 = (CardView) findViewById(R.id.card6);
-        card7 = (CardView) findViewById(R.id.card7);
-        card8 = (CardView) findViewById(R.id.card8);
-        card9 = (CardView) findViewById(R.id.card9);
-        card10 = (CardView) findViewById(R.id.card10);
-
         about = (LinearLayout) findViewById(R.id.about);
 
         card1.setOnClickListener(this);
         card2.setOnClickListener(this);
-        card3.setOnClickListener(this);
-        card4.setOnClickListener(this);
-        card5.setOnClickListener(this);
-        card6.setOnClickListener(this);
-        card7.setOnClickListener(this);
-        card8.setOnClickListener(this);
-        card9.setOnClickListener(this);
-        card10.setOnClickListener(this);
-
         about.setOnClickListener(this);
+
 
     }
 
@@ -105,46 +88,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.card2:
                 Intent intent2 = new Intent(MainActivity.this, com.zmide.myClass.activity.MainActivity.class);
                 startActivity(intent2);
-                break;
-            case R.id.card3:
-                /*Intent intent = new Intent(MainActivity.this, Demo.class);
-                startActivity(intent);*/
-                toast("正在开发中....");
-                break;
-            case R.id.card4:
-                /*Intent intent = new Intent(MainActivity.this, Demo.class);
-                startActivity(intent);*/
-                toast("待添加4");
-                break;
-            case R.id.card5:
-                /*Intent intent = new Intent(MainActivity.this, Demo.class);
-                startActivity(intent);*/
-                toast("待添加5");
-                break;
-            case R.id.card6:
-                /*Intent intent = new Intent(MainActivity.this, Demo.class);
-                startActivity(intent);*/
-                toast("待添加6");
-                break;
-            case R.id.card7:
-                /*Intent intent = new Intent(MainActivity.this, Demo.class);
-                startActivity(intent);*/
-                toast("待添加7");
-                break;
-            case R.id.card8:
-                /*Intent intent = new Intent(MainActivity.this, Demo.class);
-                startActivity(intent);*/
-                toast("待添加8");
-                break;
-            case R.id.card9:
-                /*Intent intent = new Intent(MainActivity.this, Demo.class);
-                startActivity(intent);*/
-                toast("待添加9");
-                break;
-            case R.id.card10:
-                /*Intent intent = new Intent(MainActivity.this, Demo.class);
-                startActivity(intent);*/
-                toast("待添加10");
                 break;
             case R.id.about:
                 intent = new Intent(MainActivity.this, AboutActivity.class);

@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private OkHttpClient client = new OkHttpClient();
     String TAG = "zmide";
     Context mContext;
-    boolean isVip = false;
+    boolean isVip = true;
 
 
     private Button paste;
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+
                         String tiku = (String) spinner.getSelectedItem();
                         if (question.getText().toString().isEmpty()) {
                             answer01.setText("请输入题目后搜索");
@@ -106,8 +107,92 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             answer01.setText("正在搜索中.....");
                             toast("正在搜索中.....");
-                            String answer = null;
+//                            String answer = null;
                             try {
+                                String tt = question.getText().toString();
+                                String answer = "";
+                                // String hh = "<br>";
+                                String hh = "\n";
+                                String regEx = "[\n`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。， 、？]";
+
+
+                                switch(tiku) {
+                                    case "通用接口":
+                                        // 题库一
+                                        try {
+                                            String da1 =searchDao.apiSeekTT1(tt);
+                                            answer = answer + da1 + hh;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        // 题库二
+                                        try {
+                                            String da2 = searchDao.apiSeekTT2(tt);
+                                            answer = answer + da2 + hh;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                        // 题库三
+                                        try {
+                                            String da3 = searchDao.apiSeekTT3(tt);
+                                            answer = answer + da3 + hh;
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        // 处理接口返回脏数据
+                                        answer = answer.replace("李恒雅", "查题君");
+                                        answer = answer.replace("并发限制,请使用token(公众号:叛逆青年旅舍 申请)", "");
+                                        toast(answer);
+                                        answer01.setText(answer);
+
+                                        break;
+                                    case "专属接口":
+                                        if (isVip) {
+                                            // 专属题库
+                                            try {
+                                                String da0 = searchDao.apiSeekTT0(tt);
+                                                answer = answer + da0 + hh;
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                        if (!isVip) {
+                                            toast("未授权");
+                                            answer01.setText("未授权");
+                                            break;
+                                        }
+                                        toast(answer);
+                                        answer01.setText(answer);
+                                        break;
+                                    case "英译汉":
+                                        // 判断不是中文的话就翻译
+                                        if (!isChinese(tt.replaceAll(regEx, ""))) {
+                                            try {
+                                                String fy = searchDao.apiFY(tt);
+                                                answer = answer + fy + hh;
+                                            } catch (IOException e) {
+                                                e.printStackTrace();
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                        toast(answer);
+                                        answer01.setText(answer);
+                                }
+
+
+                                /*
+                                String answer = "";
                                 switch(tiku){
                                     case "题库1":
                                         answer = searchDao.apiSeekTT1(question.getText().toString());
@@ -127,6 +212,8 @@ public class MainActivity extends AppCompatActivity {
                                 answer = answer.replace("并发限制,请使用token(公众号:叛逆青年旅舍 申请)", "");
                                 answer01.setText(answer);
                                 toast(answer);
+                                */
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -160,10 +247,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
 
-        TextView mVipText = findViewById(R.id.main_vip_text);
-        if(isVip) {
-            mVipText.setVisibility(View.VISIBLE);
-        }
 
         //绑定打开悬浮窗按钮
         mStartBtn = findViewById(R.id.main_start_btn);

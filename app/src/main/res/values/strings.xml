@@ -27,10 +27,9 @@
     <string name="answer">这是答案！！这是答案！！这是答案！！这是答案！！这是答案！！这是答案！！这是答案！！</string>
     <string name="bottom">本项目禁止用于商业用途！包括但不限于出售软件，使用软件代考等一切商业用途！</string>
     <string-array name="plantes">
-        <item>题库1</item>
-        <item>题库2</item>
-        <item>题库3</item>
-        <item>翻译</item>
+        <item>通用接口</item>
+        <item>专属接口</item>
+        <item>英译汉</item>
         <item>更多题库正在添加中..</item>
     </string-array>
 

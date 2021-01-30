@@ -87,7 +87,6 @@
                 android:layout_height="235dp"
                 android:text="@string/answer"
                 android:textColor="#F56"
-                android:gravity="center"
                 android:textIsSelectable="true" />
         </LinearLayout>
     </ScrollView>
@@ -125,17 +124,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/main_vip_text"
-            android:visibility="gone"
-            android:textStyle="bold"
-            android:layout_marginBottom="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FFC107"
-            android:text="305 寝室专属版，拥有安院专属题库（禁止外传）"/>
-
 
     </LinearLayout>
 
